@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
 
   # POST /movies
   def create
+    puts "I AM THE PARAMS", params
     @movie = Movie.new(movie_params)
 
     if @movie.save
