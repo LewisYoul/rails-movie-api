@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: rails-movie-api_development
+  pool: 5
+  username: lewis
+  password: Pr3s3ntthem
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: rails-movie-api_test
+  pool: 5
+  username: lewis
+  password: Pr3s3ntthem
