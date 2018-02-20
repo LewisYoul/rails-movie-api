@@ -5,6 +5,22 @@ describe Movie do
   before(:each) do
   end
 
+  describe "#title_exists?" do
+    it "should return true when the entry already exists" do
+      Movie.create(
+        title: "Cars",
+        overview: "A summary",
+        poster_path: "route to pic",
+        release_date: "the day it came out",
+        vote_average: 5.4
+      )
+      expect(Movie.title_exists?("Cars")).to eq(true)
+    end
+    it "should return false if the entry does not exist" do
+      expect(Movie.title_exists?("Cars")).to eq(false)
+    end
+  end
+
   describe "Validations" do
     it "is not valid without a title" do
       movie = Movie.new(title: nil)
