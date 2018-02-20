@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
   def create
     puts "I AM THE PARAMS", params
     @movie = Movie.new(movie_params)
+    @movie.ranking = Movie.all.length + 1
 
     if @movie.save
       render json: @movie, status: :created, location: @movie
