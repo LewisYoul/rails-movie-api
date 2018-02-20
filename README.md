@@ -1,5 +1,10 @@
 # README
 
+## To Do List
+
+* Create validations tests for saving of db entries (see bookmarked page)
+* Create tests to ensure db is populated
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
