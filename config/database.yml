@@ -1,15 +1,18 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
   database: rails-movie-api_development
-  pool: 5
-  username: lewis
-  password: Pr3s3ntthem
 
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: rails-movie-api_test
-  pool: 5
-  username: lewis
-  password: Pr3s3ntthem
+
+production:
+  <<: *default
+  database: rails-movie-api_production
+  username: rails-movie-api
+  password: <%= ENV['RUNNING-BUDDY_DATABASE_PASSWORD'] %
