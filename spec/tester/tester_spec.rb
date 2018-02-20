@@ -3,7 +3,6 @@ require_relative '../rails_helper'
 describe Movie do
 
   before(:each) do
-
   end
 
   describe "Validations" do
@@ -58,8 +57,54 @@ describe Movie do
         poster_path: "route to pic",
         release_date: "the day it came out",
         vote_average: 5.4
-      )}.to change { Movie.count }
+      )}.to change { Movie.count }.by(1)
     end
   end
 
+
+  describe "Read" do
+
+    it "can read a movie from the database" do
+      Movie.create(
+        title: "Cars",
+        overview: "A summary",
+        poster_path: "route to pic",
+        release_date: "the day it came out",
+        vote_average: 5.4
+      )
+      expect(Movie.where(title: "Cars")).to exist
+    end
+  end
+
+  describe "Update" do
+    it "can update a movie in the database" do
+      Movie.create(
+        title: "Cars",
+        overview: "A summary",
+        poster_path: "route to pic",
+        release_date: "the day it came out",
+        vote_average: 5.4
+      )
+      movie = Movie.find_by(title: "Cars")
+      movie.title = "Cars 2"
+      movie.save
+      expect(Movie.where(title: "Cars")).not_to exist
+      expect(Movie.where(title: "Cars 2")).to exist
+
+    end
+  end
+
+  describe "Delete" do
+    it "can delete a movie from the database" do
+      Movie.create(
+        title: "Cars",
+        overview: "A summary",
+        poster_path: "route to pic",
+        release_date: "the day it came out",
+        vote_average: 5.4
+      )
+      movie = Movie.find_by(title: "Cars")
+      expect { movie.destroy }.to change { Movie.count }.by(-1)
+    end
+  end
 end
