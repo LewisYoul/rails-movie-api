@@ -27,6 +27,9 @@ class MoviesController < ApplicationController
 
   # PATCH/PUT /movies/1
   def update
+    puts "MOVIE", @movie
+
+
     if @movie.update(movie_params)
       render json: @movie
     else
@@ -47,6 +50,6 @@ class MoviesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def movie_params
-      params.require(:movie).permit(:title, :overview, :poster_path, :release_date, :vote_average)
+      params.require(:movie).permit(:title, :overview, :poster_path, :release_date, :vote_average, :ranking)
     end
 end
